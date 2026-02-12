@@ -1,0 +1,15 @@
+@font-face {
+  font-family: "MPR-Regular";
+  src: url("../fonts/MPLUSRounded1c-Regular.ttf");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "MPR-Medium";
+  src: url("../fonts/MPLUSRounded1c-Medium.ttf");
+  font-weight: 500;
+}
+@font-face {
+  font-family: "MPR-Bold";
+  src: url("../fonts/MPLUSRounded1c-Bold.ttf");
+  font-weight: 600;
+}/*# sourceMappingURL=fonts.css.map */

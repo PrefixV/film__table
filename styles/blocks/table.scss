@@ -1,0 +1,43 @@
+main {
+    margin-top: 50px;
+    table {
+        width: 100%;
+        border-collapse: collapse;
+
+        thead {
+            th {
+                padding: 30px;
+                border-bottom: 1px solid var(--border);
+                font-size: 20px;
+                text-align: center;
+            }
+        }
+
+        tbody {
+            td {
+                padding: 10px;
+                border-bottom: 1px solid var(--border);
+                font-size: 18px;
+                text-align: center;
+
+                .film__done__button, .film__delete__button, .film__edit__button {
+                    width: 40px;
+                    height: 40px;
+                    background-color: var(--card-bg);
+                    border: 1px solid var(--border);
+                    border-radius: var(--border-radius);
+                    transition: 0.2s box-shadow ease, 0.2s border-color ease;
+
+                    &:hover {
+                        box-shadow: var(--box-shadow-focus);
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.film__done {
+  background: linear-gradient(135deg, #e6f7ff 0%, #f0f8ff 100%);
+}
