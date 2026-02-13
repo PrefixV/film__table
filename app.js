@@ -1,15 +1,21 @@
 // СМЕНА ТЕМЫ
 const themeToggle = document.querySelector('.theme-toggle');
 const body = document.body;
+const lightIcon = document.querySelector('.light-icon');
+const darkIcon = document.querySelector('.dark-icon');
 
 function setTheme(theme) {
     if(theme === "dark") {
         body.classList.add("dark__theme");
         body.classList.remove("light__theme");
+        darkIcon.classList.add("icon-active");
+        lightIcon.classList.remove("icon-active");
         themeToggle.checked = true;
     } else {
         body.classList.remove("dark__theme");
         body.classList.add("light__theme");
+        darkIcon.classList.remove("icon-active");
+        lightIcon.classList.add("icon-active");
         themeToggle.checked = false;
     }
 
@@ -28,32 +34,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const saveTheme = JSON.parse(localStorage.getItem("theme")) || [];
     setTheme(saveTheme);
 })
-
-
-// ОТКРЫТИЕ МОДАЛЬНОГО ОКНА ДОБАВЛЕНИЯ ФИЛЬМА
-
-const openModalButton = document.querySelector(".nav__add__film__button");
-const addFilmModalWrapper = document.querySelector(".add__film__modal__wrapper");
-const closeModalButton = document.querySelector(".close__modal__button");
-const editFilmModalButton = document.querySelector(".film__edit__modal__button");
-
-openModalButton.addEventListener('click', () => {
-    addFilmModalWrapper.classList.add("add__film__modal__wrapper__active");
-    const modalTitle = document.querySelector('.modal__title');
-     modalTitle.textContent = "Добавить фильм";
-    document.querySelector(".film__input__name").value = "";
-    document.querySelector(".film__select__type").value = "";
-    document.querySelector(".film__input__series").value = "";
-    document.querySelector(".film__input__season").value = "";
-})
-
-closeModalButton.addEventListener('click', () => {
-    addFilmModalWrapper.classList.remove("add__film__modal__wrapper__active");
-})
-
-const films = JSON.parse(localStorage.getItem("films")) || [];
-let currentFilms = [...films];
-const tableBody = document.querySelector(".table__body");
 
 //РЕНДЕР ОШИБОК
 
@@ -77,7 +57,9 @@ function renderTable(table) {
     table.forEach((film, index) => {
         const filmItem = document.createElement("tr");
         filmItem.classList.add("table__row");
-        filmItem.dataset.index = index;
+        filmItem.dataset.index =  Number(index);
+        filmItem.dataset.id = film.id;
+        
         if(film.isDone == true) {
             filmItem.classList.add("film__done")
         } else {
@@ -128,6 +110,32 @@ function renderTable(table) {
 
 const addFilmButton = document.querySelector('.film__create__button');
 
+// ОТКРЫТИЕ МОДАЛЬНОГО ОКНА ДОБАВЛЕНИЯ
+
+const modalTitle = document.querySelector('.modal__title');
+const openModalButton = document.querySelector(".nav__add__film__button");
+const addFilmModalWrapper = document.querySelector(".add__film__modal__wrapper");
+const closeModalButton = document.querySelector(".close__modal__button");
+const editFilmModalButton = document.querySelector(".film__edit__modal__button");
+
+openModalButton.addEventListener('click', () => {
+    addFilmModalWrapper.classList.add("add__film__modal__wrapper__active");
+    addFilmModalWrapper.dataset.mode = "add";
+    toggleMode("add");
+    document.querySelector(".film__input__name").value = "";
+    document.querySelector(".film__select__type").value = "";
+    document.querySelector(".film__input__series").value = "";
+    document.querySelector(".film__input__season").value = "";
+})
+
+closeModalButton.addEventListener('click', () => {
+    addFilmModalWrapper.classList.remove("add__film__modal__wrapper__active");
+})
+
+const films = JSON.parse(localStorage.getItem("films")) || [];
+let currentFilms = [...films];
+const tableBody = document.querySelector(".table__body");
+
 // ДОБАВЛЕНИЕ ФИЛЬМА
 
 const filmTypeSelect = document.querySelector('.film__select__type');
@@ -155,14 +163,15 @@ addFilmButton.addEventListener('click', () => {
         return;
     }
 
-    const filmItem = {
-        name: filmName,
-        type: filmType,
-        series: filmSeries,
-        season: filmSeason,
-        timeCreate: Date.now(),
-        isDone: false,
-    };
+   const filmItem = {
+  id: Date.now() + Math.random().toString(36).substr(2, 5),
+  name: filmName,
+  type: filmType,
+  series: filmSeries,
+  season: filmSeason,
+  timeCreate: Date.now(),
+  isDone: false,
+};
 
     films.push(filmItem);
     localStorage.setItem('films', JSON.stringify(films));
@@ -170,46 +179,24 @@ addFilmButton.addEventListener('click', () => {
     addFilmModalWrapper.classList.remove('add__film__modal__wrapper__active');
 });
 
-// УДАЛЕНИЕ ФИЛЬМА
-
-tableBody.addEventListener('click', (e) => {
-    const deleteFilmButton = e.target.closest('.film__delete__button');
-    if(!deleteFilmButton) return;
-    const index = deleteFilmButton.dataset.index;
-    films.splice(index, 1);
-    localStorage.setItem("films", JSON.stringify(films));
-    renderTable(films)
-})
-
-// СТАТУС ПРОСМОТРЕННО
-
-tableBody.addEventListener('click', (e) => {
-    const filmDoneButton = e.target.closest(".film__done__button");
-
-    if(!filmDoneButton) return;
-    const index = filmDoneButton.dataset.index;
-
-    films[index].isDone = !films[index].isDone;
-    films[index].timeCreate = Date.now();
-
-    localStorage.setItem("films", JSON.stringify(films));
-    renderTable(films);
-})
-
 // РЕДАКТИРОВАНИЕ ФИЛЬМА
 
 tableBody.addEventListener('click', (e) => {
-    const modalTitle = document.querySelector('.modal__title');
     const editButton = e.target.closest(".film__edit__button");
     if(!editButton) return;
-    const index = editButton.dataset.index;
+    const filmRow = editButton.closest('.table__row');
+    const id = filmRow.dataset.id
+
+    const index = films.findIndex(f => f.id === id);
+    if(index === -1) return;
+
     const currentFilm = films[index];
 
-    console.log(currentFilm);
-    addFilmModalWrapper.classList.add("add__film__modal__wrapper__active");
     
+    addFilmModalWrapper.classList.add("add__film__modal__wrapper__active");
+    addFilmModalWrapper.dataset.mode = "edit";
+    toggleMode("edit");
 
-    modalTitle.textContent = "Редактирование"
     document.querySelector(".film__input__name").value = currentFilm.name;
     document.querySelector(".film__select__type").value = currentFilm.type;
     document.querySelector(".film__input__series").value = currentFilm.series;
@@ -243,6 +230,70 @@ function saveEditFilms() {
 }
 
 editFilmModalButton.addEventListener('click', saveEditFilms);
+
+function toggleMode(mode) {
+    mode = addFilmModalWrapper.dataset.mode;
+    if(mode === "add") {
+        modalTitle.textContent = "Добавить фильм"
+        editFilmModalButton.classList.add('display__none');
+        editFilmModalButton.classList.remove('display__normal');
+        addFilmButton.classList.remove('display__none');
+        addFilmButton.classList.add('display__normal');
+
+    } else if(mode === "edit") {
+        editFilmModalButton.classList.remove('display__none');
+        editFilmModalButton.classList.add('display__normal');
+        addFilmButton.classList.add('display__none');
+        addFilmButton.classList.remove('display__normal');
+    } else {
+        renderError("Кнопка ненайдена!");
+    }
+}
+
+
+// УДАЛЕНИЕ ФИЛЬМА
+
+
+tableBody.addEventListener('click', (e) => {
+  const deleteFilmButton = e.target.closest('.film__delete__button');
+  if (!deleteFilmButton) return;
+
+
+  const filmRow = deleteFilmButton.closest('.table__row');
+  const id = filmRow.dataset.id;
+
+  const index = films.findIndex(f => f.id === id);
+  if (index === -1) return;
+
+  films.splice(index, 1);
+  localStorage.setItem("films", JSON.stringify(films));
+  sortNSearch();
+});
+
+// СТАТУС ПРОСМОТРЕННО
+
+tableBody.addEventListener('click', (e) => {
+    const filmDoneButton = e.target.closest(".film__done__button");
+    const filmTableRow = e.target.closest(".table__row");
+
+    if(!filmDoneButton) return;
+    const id = filmTableRow.dataset.id;
+    const index = films.findIndex(f => f.id === id);
+    console.log(index);
+    
+    if (index === -1) {
+        renderError('Фильм не найден по id:', id);
+        return;
+    }
+
+    films[index].isDone = !films[index].isDone;
+    films[index].timeCreate = Date.now();
+
+    currentFilms = [...films];
+    localStorage.setItem("films", JSON.stringify(films));
+    sortNSearch();
+    renderTable(currentFilms);
+})
 
 // ФИЛЬТРАЦИЯ МАССИВА
 

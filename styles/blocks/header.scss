@@ -276,20 +276,15 @@ MODAL WINDOW FOR ADD FILM
 
 .display__none {
     display: none;
-    width: 0;
-    height: 0;
 }
 
 .display__normal {
     display: block;
-    width: 100%;
-    height: 100%;
 }
 
 .theme-switch {
   display: flex;
   align-items: center;
-  gap: 8px;
 }
 
 .theme-toggle {
@@ -301,8 +296,10 @@ MODAL WINDOW FOR ADD FILM
 .theme-label {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   cursor: pointer;
-  padding: 4px 8px;
+  padding: 5px 5px;
+  width: 100px;
   border-radius: 20px;
   background-color: #ffffff;
   border: 1px solid #cbd5e1;
@@ -319,9 +316,14 @@ MODAL WINDOW FOR ADD FILM
   font-size: 16px;
   margin: 0 4px;
   transition: opacity 0.3s;
+  padding: 5px 8px;
 }
 
-.theme-light .theme-icon:first-child  { opacity: 1; }
-.theme-light .theme-icon:last-child   { opacity: 0; }
-.theme-dark .theme-icon:first-child   { opacity: 0; }
-.theme-dark .theme-icon:last-child    { opacity: 1; }
+.icon-active {
+    background-color: var(--border);
+    border-radius: 50%;
+
+    svg {
+        fill: var(--text-main);
+    }
+}
