@@ -3,8 +3,37 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  transition: 0.2s background ease, 0.2s background-color ease, 0.2s border-color ease;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 
 body, html {
   scrollbar-width: none;
+}
+
+body {
+  background-color: var(--bg);
+  height: 100%;
+}
+
+.light__theme {
+  --bg: var(--bg-light);
+  --card-bg: var(--card-light);
+  --text-main: var(--text-main-light);
+  --text-secondary: var(--text-secondary-light);
+  --border: var(--border-light);
+  --accent: var(--accent-light);
+  --active: var(--active-light);
+}
+
+.dark__theme {
+  --bg: #1b263b;
+  --card-bg: #1E293B;
+  --text-main: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --border: #334155;
+  --accent: #415a77;
+  --active: #415a77;
 }/*# sourceMappingURL=globals.css.map */

@@ -10,17 +10,19 @@ main table thead th {
   border-bottom: 1px solid var(--border);
   font-size: 20px;
   text-align: center;
+  color: var(--text-main);
 }
 main table tbody td {
   padding: 10px;
   border-bottom: 1px solid var(--border);
+  color: var(--text-main);
   font-size: 18px;
   text-align: center;
 }
 main table tbody td .film__done__button, main table tbody td .film__delete__button, main table tbody td .film__edit__button {
   width: 40px;
   height: 40px;
-  background-color: var(--card-bg);
+  background-color: var(--accent);
   border: 1px solid var(--border);
   border-radius: var(--border-radius);
   transition: 0.2s box-shadow ease, 0.2s border-color ease;
@@ -28,6 +30,9 @@ main table tbody td .film__done__button, main table tbody td .film__delete__butt
 main table tbody td .film__done__button:hover, main table tbody td .film__delete__button:hover, main table tbody td .film__edit__button:hover {
   box-shadow: var(--box-shadow-focus);
   cursor: pointer;
+}
+main table tbody td .film__done__button svg, main table tbody td .film__delete__button svg, main table tbody td .film__edit__button svg {
+  fill: var(--text-main);
 }
 
 .film__done {

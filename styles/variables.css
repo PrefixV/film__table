@@ -15,4 +15,11 @@
   --border-radius: 10px;
   --border-focus: #3B82F6;
   --box-shadow-focus: 0 0 0 3px rgba(59, 130, 246, 0.25);
+  --bg-light: #F8FAFC;
+  --card-light: #FFFFFF;
+  --text-main-light: #0F172A;
+  --text-secondary-light: #475569;
+  --border-light: #CBD5E1;
+  --accent-light: #ffffff;
+  --active-light: #1E40AF;
 }/*# sourceMappingURL=variables.css.map */

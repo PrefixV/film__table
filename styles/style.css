@@ -18,10 +18,39 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  transition: 0.2s background ease, 0.2s background-color ease, 0.2s border-color ease;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 
 body, html {
   scrollbar-width: none;
+}
+
+body {
+  background-color: var(--bg);
+  height: 100%;
+}
+
+.light__theme {
+  --bg: var(--bg-light);
+  --card-bg: var(--card-light);
+  --text-main: var(--text-main-light);
+  --text-secondary: var(--text-secondary-light);
+  --border: var(--border-light);
+  --accent: var(--accent-light);
+  --active: var(--active-light);
+}
+
+.dark__theme {
+  --bg: #1b263b;
+  --card-bg: #1E293B;
+  --text-main: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --border: #334155;
+  --accent: #415a77;
+  --active: #415a77;
 }
 
 :root {
@@ -41,6 +70,13 @@ body, html {
   --border-radius: 10px;
   --border-focus: #3B82F6;
   --box-shadow-focus: 0 0 0 3px rgba(59, 130, 246, 0.25);
+  --bg-light: #F8FAFC;
+  --card-light: #FFFFFF;
+  --text-main-light: #0F172A;
+  --text-secondary-light: #475569;
+  --border-light: #CBD5E1;
+  --accent-light: #ffffff;
+  --active-light: #1E40AF;
 }
 
 header {
@@ -63,7 +99,9 @@ header nav ul li input {
   border-radius: var(--border-radius);
   padding: 10px 14px;
   outline: none;
-  border: 1px solid var(--border);
+  background-color: var(--card-bg);
+  border: 1px solid #cbd5e1;
+  color: var(--text-main);
   font-size: 14px;
   transition: 0.2s box-shadow ease, 0.2s border-color ease;
 }
@@ -75,13 +113,20 @@ header nav ul li input:hover {
   box-shadow: var(--box-shadow-focus);
   border-color: var(--border-focus);
 }
+header nav ul li input::-moz-placeholder {
+  color: var(--text-main);
+}
+header nav ul li input::placeholder {
+  color: var(--text-main);
+}
 header nav ul li .nav__add__film__button {
   padding: 10px 14px;
   font-size: 14px;
-  border: 1px solid var(--border);
+  background-color: var(--card-bg);
+  border: 1px solid #cbd5e1;
+  color: var(--text-main);
   border-radius: var(--border-radius);
   transition: 0.2s box-shadow ease, 0.2s border-color ease;
-  background-color: var(--card-bg);
 }
 header nav ul li .nav__add__film__button:hover {
   box-shadow: var(--box-shadow-focus);
@@ -96,8 +141,8 @@ header nav ul li select {
   padding: 10px 14px;
   font-size: 14px;
   font-weight: 500;
-  color: #1e293b;
-  background-color: #ffffff;
+  color: var(--text-main);
+  background-color: var(--card-bg);
   border: 1px solid #cbd5e1;
   border-radius: 10px;
   cursor: pointer;
@@ -154,6 +199,9 @@ MODAL WINDOW FOR ADD FILM
   border-color: var(--border-focus);
   cursor: pointer;
 }
+.add__film__modal__wrapper .close__modal__button svg {
+  fill: var(--text-main);
+}
 .add__film__modal__wrapper .add__film__items__wrapper {
   display: flex;
   flex-direction: column;
@@ -161,6 +209,7 @@ MODAL WINDOW FOR ADD FILM
   justify-content: center;
   gap: 30px;
   border: 1px solid var(--border);
+  background-color: var(--bg);
   border-radius: var(--border-radius);
   padding: 30px;
   box-shadow: var(--box-shadow);
@@ -170,7 +219,9 @@ MODAL WINDOW FOR ADD FILM
   padding: 10px 14px;
   outline: none;
   width: 100%;
-  border: 1px solid var(--border);
+  background-color: var(--card-bg);
+  border: 1px solid #cbd5e1;
+  color: var(--text-main);
   font-size: 14px;
   transition: 0.2s box-shadow ease, 0.2s border-color ease;
 }
@@ -182,6 +233,12 @@ MODAL WINDOW FOR ADD FILM
   box-shadow: var(--box-shadow-focus);
   border-color: var(--border-focus);
 }
+.add__film__modal__wrapper .add__film__items__wrapper input::-moz-placeholder {
+  color: var(--text-main);
+}
+.add__film__modal__wrapper .add__film__items__wrapper input::placeholder {
+  color: var(--text-main);
+}
 .add__film__modal__wrapper .add__film__items__wrapper select {
   appearance: none;
   -webkit-appearance: none;
@@ -190,10 +247,10 @@ MODAL WINDOW FOR ADD FILM
   padding: 10px 14px;
   font-size: 14px;
   font-weight: 500;
-  color: #1e293b;
-  background-color: #ffffff;
+  background-color: var(--card-bg);
   border: 1px solid #cbd5e1;
   border-radius: 10px;
+  color: var(--text-main);
   cursor: pointer;
   outline: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpath d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
@@ -217,6 +274,7 @@ MODAL WINDOW FOR ADD FILM
   border-radius: var(--border-radius);
   transition: 0.2s box-shadow ease, 0.2s border-color ease;
   background-color: var(--card-bg);
+  color: var(--text-main);
 }
 .add__film__modal__wrapper .add__film__items__wrapper button:hover {
   box-shadow: var(--box-shadow-focus);
@@ -225,6 +283,7 @@ MODAL WINDOW FOR ADD FILM
 }
 .add__film__modal__wrapper .add__film__items__wrapper h1 {
   font-size: 30px;
+  color: var(--text-main);
 }
 
 .add__film__modal__wrapper__active {
@@ -262,6 +321,56 @@ MODAL WINDOW FOR ADD FILM
   height: 100%;
 }
 
+.theme-switch {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.theme-toggle {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.theme-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 20px;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  transition: 0.2s;
+}
+.theme-label:hover {
+  box-shadow: var(--box-shadow-focus);
+  border-color: var(--border-focus);
+  cursor: pointer;
+}
+
+.theme-icon {
+  font-size: 16px;
+  margin: 0 4px;
+  transition: opacity 0.3s;
+}
+
+.theme-light .theme-icon:first-child {
+  opacity: 1;
+}
+
+.theme-light .theme-icon:last-child {
+  opacity: 0;
+}
+
+.theme-dark .theme-icon:first-child {
+  opacity: 0;
+}
+
+.theme-dark .theme-icon:last-child {
+  opacity: 1;
+}
+
 main {
   margin-top: 50px;
 }
@@ -274,17 +383,19 @@ main table thead th {
   border-bottom: 1px solid var(--border);
   font-size: 20px;
   text-align: center;
+  color: var(--text-main);
 }
 main table tbody td {
   padding: 10px;
   border-bottom: 1px solid var(--border);
+  color: var(--text-main);
   font-size: 18px;
   text-align: center;
 }
 main table tbody td .film__done__button, main table tbody td .film__delete__button, main table tbody td .film__edit__button {
   width: 40px;
   height: 40px;
-  background-color: var(--card-bg);
+  background-color: var(--accent);
   border: 1px solid var(--border);
   border-radius: var(--border-radius);
   transition: 0.2s box-shadow ease, 0.2s border-color ease;
@@ -292,6 +403,9 @@ main table tbody td .film__done__button, main table tbody td .film__delete__butt
 main table tbody td .film__done__button:hover, main table tbody td .film__delete__button:hover, main table tbody td .film__edit__button:hover {
   box-shadow: var(--box-shadow-focus);
   cursor: pointer;
+}
+main table tbody td .film__done__button svg, main table tbody td .film__delete__button svg, main table tbody td .film__edit__button svg {
+  fill: var(--text-main);
 }
 
 .film__done {

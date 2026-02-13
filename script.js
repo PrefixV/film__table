@@ -1,3 +1,34 @@
+// СМЕНА ТЕМЫ
+const themeToggle = document.querySelector('.theme-toggle');
+const body = document.body;
+
+function setTheme(theme) {
+    if(theme === "dark") {
+        body.classList.add("dark__theme");
+        body.classList.remove("light__theme");
+        themeToggle.checked = true;
+    } else {
+        body.classList.remove("dark__theme");
+        body.classList.add("light__theme");
+        themeToggle.checked = false;
+    }
+
+    localStorage.setItem("theme", JSON.stringify(theme));
+}
+
+function toggleTheme() {
+    const currentTheme = JSON.parse(localStorage.getItem("theme")) || [];
+    const newTheme = currentTheme == 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+}
+
+themeToggle.addEventListener('change', toggleTheme);
+
+document.addEventListener('DOMContentLoaded', () => {
+    const saveTheme = JSON.parse(localStorage.getItem("theme")) || [];
+    setTheme(saveTheme);
+})
+
 
 // ОТКРЫТИЕ МОДАЛЬНОГО ОКНА ДОБАВЛЕНИЯ ФИЛЬМА
 
@@ -228,17 +259,17 @@ function sortNSearch() {
         switch(type) {
             case "Тип":
                 result.sort((a,b) => {
-                    b.type?.toLowerCase()?.localeCompare(a.type?.toLowerCase() || 0)
+                    return b.type?.toLowerCase()?.localeCompare(a.type?.toLowerCase() || 0)
                 }) 
                 break
             case "Название":
                 result.sort((a,b) => {
-                    a.name?.toLowerCase()?.localeCompare(b.name?.toLowerCase() || 0)
+                    return a.name?.toLowerCase()?.localeCompare(b.name?.toLowerCase() || 0)
                 })
                 break
             case "Дата добавления":
                 result.sort((a,b) => {
-                    new Date(a.timeCreate).getTime() - new Date(b.timeCreate).getTime()
+                    return new Date(a.timeCreate).getTime() - new Date(b.timeCreate).getTime()
                 })
                 break
         }
