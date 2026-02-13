@@ -26,20 +26,20 @@ body, html {
 
 :root {
   --box-shadow: 0 8px 24px rgba(37, 99, 235, 0.08);
-  --primary: #2563EB;
-  --primary-dark: #1E40AF;
+  --primary: #5851DB;
+  --primary-dark: #3B30A3;
   --dark: #141414;
-  --bg: #F8FAFC;
+  --bg: #F5F7FA;
   --card-bg: #FFFFFF;
-  --border: #CBD5E1;
-  --border-error: #ff0000;
-  --text-main: #0F172A;
-  --text-secondary: #475569;
-  --done-bg: #ecfdf5;
-  --done-text: #166534;
-  --done-border: #22c55e;
+  --border: #E0E6ED;
+  --border-error: #FF5252;
+  --text-main: #1E293B;
+  --text-secondary: #4F5665;
+  --done-bg: #D1F7CE;
+  --done-text: #109C52;
+  --done-border: #6ED547;
   --border-radius: 10px;
-  --border-focus: #3b82f6;
+  --border-focus: #3B82F6;
   --box-shadow-focus: 0 0 0 3px rgba(59, 130, 246, 0.25);
 }
 
@@ -295,7 +295,7 @@ main table tbody td .film__done__button:hover, main table tbody td .film__delete
 }
 
 .film__done {
-  background: linear-gradient(135deg, #e6f7ff 0%, #f0f8ff 100%);
+  background: var(--done-bg);
 }
 
 .error__wrapper {

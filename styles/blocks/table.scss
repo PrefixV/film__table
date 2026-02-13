@@ -39,5 +39,5 @@ main {
 }
 
 .film__done {
-  background: linear-gradient(135deg, #e6f7ff 0%, #f0f8ff 100%);
+  background: var(--done-bg);
 }

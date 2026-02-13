@@ -53,6 +53,11 @@ function renderTable(table) {
             filmItem.classList.remove("film__done")
         }
 
+        if(film.season == "" && film.series == "") {
+            film.series = "-";
+            film.season = "-";
+        }
+
         filmItem.innerHTML = `
             <td class="film__name">
                 ${film.name}
@@ -217,13 +222,27 @@ function sortNSearch() {
     const type = selectFilter.value;
     let result = [...films];
 
-    if (type === "Тип") {
-    result.sort((a, b) => b.type?.toLowerCase()?.localeCompare(a.type?.toLowerCase()) || 0);
-  } else if (type === "Название") {
-    result.sort((a, b) => a.name?.toLowerCase()?.localeCompare(b.name?.toLowerCase()) || 0);
-  } else if (type === "Дата добавления") {
-    result.sort((a, b) => new Date(a.timeCreate).getTime() - new Date(b.timeCreate).getTime());
-  }
+    if(type === "Просмотренные") {
+        result = result.filter(el => el.isDone === true);
+    } else {
+        switch(type) {
+            case "Тип":
+                result.sort((a,b) => {
+                    b.type?.toLowerCase()?.localeCompare(a.type?.toLowerCase() || 0)
+                }) 
+                break
+            case "Название":
+                result.sort((a,b) => {
+                    a.name?.toLowerCase()?.localeCompare(b.name?.toLowerCase() || 0)
+                })
+                break
+            case "Дата добавления":
+                result.sort((a,b) => {
+                    new Date(a.timeCreate).getTime() - new Date(b.timeCreate).getTime()
+                })
+                break
+        }
+    }
 
     const query = document.querySelector(".search__film").value.trim().toLowerCase();
 
