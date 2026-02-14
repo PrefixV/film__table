@@ -24,6 +24,7 @@ body {
   --border: var(--border-light);
   --accent: var(--accent-light);
   --active: var(--active-light);
+  --done-film-bg: var(--border);
 }
 
 .dark__theme {
@@ -34,4 +35,5 @@ body {
   --border: #334155;
   --accent: #415a77;
   --active: #415a77;
+  --done-film-bg: var(--border);
 }

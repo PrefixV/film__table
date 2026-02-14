@@ -1,7 +1,7 @@
 .error__wrapper {
   position: absolute;
-  bottom: 0px;
-  right: 0px;
+  bottom: 0;
+  right: 0;
   padding: 0px 0px;
   height: 0px;
   border-radius: var(--border-radius);
@@ -14,7 +14,7 @@
 }
 .error__wrapper .error__message {
   font-size: 20px;
-  color: var(--dark);
+  color: var(--text-main);
   text-align: center;
   display: flex;
   justify-content: center;
@@ -22,7 +22,7 @@
 }
 
 .error__wrapper__active {
-  top: 20px;
+  bottom: 20px;
   right: 20px;
   padding: 15px 100px;
   height: 70px;

@@ -36,5 +36,5 @@ main table tbody td .film__done__button svg, main table tbody td .film__delete__
 }
 
 .film__done {
-  background: var(--done-bg);
+  background: var(--done-film-bg);
 }/*# sourceMappingURL=table.css.map */

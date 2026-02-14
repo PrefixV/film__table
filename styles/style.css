@@ -41,6 +41,7 @@ body {
   --border: var(--border-light);
   --accent: var(--accent-light);
   --active: var(--active-light);
+  --done-film-bg: var(--border);
 }
 
 .dark__theme {
@@ -51,6 +52,7 @@ body {
   --border: #334155;
   --accent: #415a77;
   --active: #415a77;
+  --done-film-bg: var(--border);
 }
 
 :root {
@@ -77,6 +79,7 @@ body {
   --border-light: #CBD5E1;
   --accent-light: #ffffff;
   --active-light: #1E40AF;
+  --done-film-bg: #0084ff;
 }
 
 header {
@@ -311,14 +314,10 @@ MODAL WINDOW FOR ADD FILM
 
 .display__none {
   display: none;
-  width: 0;
-  height: 0;
 }
 
 .display__normal {
   display: block;
-  width: 100%;
-  height: 100%;
 }
 
 .theme-switch {
@@ -403,13 +402,13 @@ main table tbody td .film__done__button svg, main table tbody td .film__delete__
 }
 
 .film__done {
-  background: var(--done-bg);
+  background: var(--done-film-bg);
 }
 
 .error__wrapper {
   position: absolute;
-  bottom: 0px;
-  right: 0px;
+  bottom: 0;
+  right: 0;
   padding: 0px 0px;
   height: 0px;
   border-radius: var(--border-radius);
@@ -422,7 +421,7 @@ main table tbody td .film__done__button svg, main table tbody td .film__delete__
 }
 .error__wrapper .error__message {
   font-size: 20px;
-  color: var(--dark);
+  color: var(--text-main);
   text-align: center;
   display: flex;
   justify-content: center;
@@ -430,7 +429,7 @@ main table tbody td .film__done__button svg, main table tbody td .film__delete__
 }
 
 .error__wrapper__active {
-  top: 20px;
+  bottom: 20px;
   right: 20px;
   padding: 15px 100px;
   height: 70px;
