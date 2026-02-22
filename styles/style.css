@@ -364,6 +364,11 @@ MODAL WINDOW FOR ADD FILM
   fill: var(--text-main);
 }
 
+.films__total {
+  font-size: 18px;
+  color: white;
+}
+
 main {
   margin-top: 50px;
 }

@@ -278,4 +278,9 @@ MODAL WINDOW FOR ADD FILM
 }
 .icon-active svg {
   fill: var(--text-main);
+}
+
+.films__total {
+  font-size: 18px;
+  color: white;
 }/*# sourceMappingURL=header.css.map */

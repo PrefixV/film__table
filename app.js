@@ -60,6 +60,10 @@ function renderTable(table) {
         filmItem.dataset.index =  Number(index);
         filmItem.dataset.id = film.id;
         
+        const totalFilmWrapper = document.querySelector(".films__total");
+        let filteredFilms = films.filter(el => el.isDone == true);
+        totalFilmWrapper.textContent = `Просмотренных: ${filteredFilms.length}`
+        
         if(film.isDone == true) {
             filmItem.classList.add("film__done")
         } else {
@@ -341,6 +345,8 @@ function sortNSearch() {
 
 selectFilter.addEventListener('change', sortNSearch);
 searchInput.addEventListener('input', sortNSearch);
+
+// КОЛЛИЧЕСТВО ПРОСМОТРЕННЫХ
 
 // ФИНАЛЬНЫЙ РЕНДЕР
 
