@@ -36,7 +36,9 @@ main {
                     }
 
                     svg {
-                        fill: var(--text-main);
+                        path {
+                            fill: var(--text-main);
+                        }
                     }
                 }
             }
@@ -46,4 +48,59 @@ main {
 
 .film__done {
   background: var(--done-film-bg);
+}
+
+.pages__wrapper {
+    border-radius: var(--border-radius);
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+
+    .prev__page__button {
+       cursor: pointer;
+       
+       svg {
+            path {
+                fill: var(--text-main);
+            }
+       }
+
+       &:hover {
+        transform: translateX(-4px);
+       }
+    }
+
+    .current__page__wrapper {
+        color: var(--text-main);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .next__page__wrapper {
+        cursor: pointer;
+        
+        svg {
+            path {
+                fill: var(--text-main);
+            }
+        }
+
+        &:hover {
+            transform: translateX(4px);
+        }
+    }
+
+    .page__button {
+        width: 40px;
+        height: 40px;
+        color: var(--text-main);
+        background-color: var(--accent);
+        border: 1px solid var(--border);
+        border-radius: var(--border-radius);
+        transition: 0.2s box-shadow ease, 0.2s border-color ease;
+    }
 }

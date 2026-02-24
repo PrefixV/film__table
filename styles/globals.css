@@ -3,7 +3,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  transition: 0.2s background ease, 0.2s background-color ease, 0.2s border-color ease;
+  transition: 0.2s all ease;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
@@ -16,6 +16,14 @@ body, html {
 body {
   background-color: var(--bg);
   height: 100%;
+}
+
+main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
 }
 
 .light__theme {

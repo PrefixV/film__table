@@ -278,4 +278,8 @@ MODAL WINDOW FOR ADD FILM
 }
 .icon-active svg {
   fill: var(--text-main);
+}
+
+.total__watch__movies {
+  color: var(--text-main);
 }/*# sourceMappingURL=header.css.map */

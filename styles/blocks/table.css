@@ -31,10 +31,53 @@ main table tbody td .film__done__button:hover, main table tbody td .film__delete
   box-shadow: var(--box-shadow-focus);
   cursor: pointer;
 }
-main table tbody td .film__done__button svg, main table tbody td .film__delete__button svg, main table tbody td .film__edit__button svg {
+main table tbody td .film__done__button svg path, main table tbody td .film__delete__button svg path, main table tbody td .film__edit__button svg path {
   fill: var(--text-main);
 }
 
 .film__done {
   background: var(--done-film-bg);
+}
+
+.pages__wrapper {
+  border-radius: var(--border-radius);
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+}
+.pages__wrapper .prev__page__button {
+  cursor: pointer;
+}
+.pages__wrapper .prev__page__button svg path {
+  fill: var(--text-main);
+}
+.pages__wrapper .prev__page__button:hover {
+  transform: translateX(-4px);
+}
+.pages__wrapper .current__page__wrapper {
+  color: var(--text-main);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.pages__wrapper .next__page__wrapper {
+  cursor: pointer;
+}
+.pages__wrapper .next__page__wrapper svg path {
+  fill: var(--text-main);
+}
+.pages__wrapper .next__page__wrapper:hover {
+  transform: translateX(4px);
+}
+.pages__wrapper .page__button {
+  width: 40px;
+  height: 40px;
+  color: var(--text-main);
+  background-color: var(--accent);
+  border: 1px solid var(--border);
+  border-radius: var(--border-radius);
+  transition: 0.2s box-shadow ease, 0.2s border-color ease;
 }/*# sourceMappingURL=table.css.map */
